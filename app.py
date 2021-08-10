@@ -2,8 +2,7 @@ import _pickle as pickle
 #import data viz and manipulation/cleaning libraries/EDA
 import pandas as pd
 import numpy as np
-#import matplotlib.pyplot as plt
-#import seaborn as sns; sns.set_theme(color_codes=True)
+
 import base64
 
 #import machine learning libraries
