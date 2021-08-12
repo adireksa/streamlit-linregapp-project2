@@ -24,7 +24,7 @@ def main():
     st.set_page_config(page_title='t3nt3n_ONE - Linear Regression App', page_icon="🖖")
     st.title('Automotive C02 Emissions Predictor')
     st.sidebar.title("User Inputs For Model")
-    st.sidebar.markdown("Car Features")
+    #st.sidebar.markdown("Car Features")
 
 if __name__ == '__main__':
     main()
@@ -37,6 +37,12 @@ st.markdown(f""" <style>
         padding-left: {padding}rem;
         padding-bottom: {padding}rem;
     }} </style> """, unsafe_allow_html=True)
+
+st.markdown(""" <style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style> """, unsafe_allow_html=True)
+
 st.write("""
 
 # Multi Linear Regression App
@@ -45,7 +51,7 @@ st.write("""
  Select inputs from sidebar to see model predictions on CO2 (g/km) emissions for automobiles.
  Keys and values for categorical features are under the dropdown menu selection
 
-Model uses multi linear regression with data scaled using StandardScaler (Z-Score)
+Model uses multi linear regression for predictions
 
 """)
 
@@ -151,17 +157,25 @@ st.subheader('Predicted CO2 Emissions (g/km)')
 st.write(prediction)
 
 
-#insert image to see quartiles of target
-st.image('co2_quartiles.png')
+#Write Tax Recommendations
+st.subheader('This Automobile Will Be Imposed With The Following Carbon Tax:')
+#col1, col2, col3 = st.columns([1,1,1])
+#write the tax bandwidth based on the predictions
+if prediction < np.percentile(df_selected.co2_emissions, 25):
+    st.write("Lowest Carbon Tax Band: 0% -25% quartile of dataset")
+elif prediction < np.percentile(df_selected.co2_emissions, 50) and prediction > np.percentile(df_selected.co2_emissions, 25):
+    st.write("2nd Carbon Tax Band: 26% -50% quartile of dataset")
+elif prediction < np.percentile(df_selected.co2_emissions, 75) and prediction > np.percentile(df_selected.co2_emissions, 50):
+    st.write("3rd Carbon Tax Band: 50% -75% quartile of dataset")
+elif prediction > np.percentile(df_selected.co2_emissions, 75):
+    st.write("4th Carbon Tax Band: 75%-100% quartile of dataset")
 
 
+#Check to see if input cylinders more than 10
+if input_df.cylinders[0] > 10:
+    st.write("Impose additional carbon tax for luxury car. More Than 10 cylinders.")
 
+#Check to see if input cylinders more than 10
+if input_df.vehicle_class[0] == 12:
+    st.write('Impose additional carbon tax for vehicle class "Passenger Van."')
 
-#st.sidebar.write(transmission_sidebar)
-"""
-        
-        
-        
-  
-  
-  """
