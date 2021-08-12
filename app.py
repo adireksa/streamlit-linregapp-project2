@@ -168,7 +168,7 @@ elif prediction < np.percentile(df_selected.co2_emissions, 50) and prediction > 
 elif prediction < np.percentile(df_selected.co2_emissions, 75) and prediction > np.percentile(df_selected.co2_emissions, 50):
     st.write("3rd Carbon Tax Band: 50% -75% quartile of dataset")
 elif prediction > np.percentile(df_selected.co2_emissions, 75):
-    st.write("4th Carbon Tax Band: 75%-100% quartile of dataset")
+    st.write("Highest Tax Band: 75%-100% quartile of dataset")
 
 
 #Check to see if input cylinders more than 10
