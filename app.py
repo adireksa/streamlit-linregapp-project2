@@ -151,7 +151,8 @@ st.subheader('Predicted CO2 Emissions (g/km)')
 st.write(prediction)
 
 
-
+#insert image to see quartiles of target
+st.image('co2_quartiles.png')
 
 
 
